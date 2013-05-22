@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<title>UAA Login | Cloud Foundry</title>
+<meta charset='utf-8'>
+</head>
+<body id="micro">
+	<div class="content">
+		<article class="container">
+			<p>Sign in with your CloudFoundry credentials.</p>
+			<form id="loginForm" name="loginForm"
+				action="#" th:action="@{/login.do}" method="POST" novalidate>
+				<div>
+					<div class="flash" th:if="${param.error}" th:text="Sorry, we couldn't verify your email and
+							password."></div>
+					<input th:each="prompt: ${prompts}" 
+						th:id="${prompt.key} ?: ${prompt.name}"
+						th:type="${prompt.key} ?: ${prompt.value[0]}"
+						th:name="${prompt.key} ?: ${prompt.name}"
+						th:text="${prompt.key} ? prompt.value[1] : ${prompt.text}">
+					</input>
+				</div>
+				<button type="submit" class="button">Sign in</button>
+			</form>
+		</article>
+		<div class="message">
+			<p>
+				If you are reading this you are probably in the wrong place because
+				the UAA does not support a branded UI out of the box. To login to
+				<code>cloudfoundry.com</code>
+				<a href="https://login.cloudfoundry.com">click here.</a> If you were
+				re-directed here by another application, please contact the owner of
+				that application and tell them to use the Login Server as UI entry
+				point.
+			</p>
+		</div>
+	</div>
+	<div class="footer"
+		title="Version: ${app.version}, Commit: ${commit_id}, Timestamp: ${timestamp}">
+		Copyright &copy;
+		<span th:text="${#dates.year(now)}">2013</span>
+		VMware, Inc. All rights reserved.
+	</div>
+</body>
+</html>

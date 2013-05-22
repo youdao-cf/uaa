@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Success | Cloud Foundry</title>
+</head>
+<body id="micro">
+	<div class="content">
+		<div>
+			<div>
+				<h2>Success</h2>
+
+				<p>Your account login is working and you have authenticated.</p>
+
+				<div class="error" title="${error}" th:if="${error} neq null" th:utext="<p>But there was an error.</p>"></div>
+				
+				<h2>You are logged in.</h2>
+
+				<p>
+					<a href="logout.do" th:href="@{/logout.do}">Logout</a> &nbsp;
+				</p>
+
+			</div>
+		</div>
+		<div title="Version: ${app.version}, Commit: ${commit_id}, Timestamp: ${timestamp}">
+			Copyright &copy;
+			<span th:text="${#dates.year(now)}">2013</span>
+			VMware, Inc. All rights reserved.
+		</div>
+	</div>
+</body>
+</html>
